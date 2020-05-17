@@ -1,0 +1,17 @@
+{% extends 'ads/base.html' %}
+
+{% block title %}
+    {% if title %}
+        {{ title }}
+    {% else %}
+        Job Site
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h1>Home page</h1>
+    {% for ad in ads %}
+        <p><a href="{% url 'ad-detail' pk=ad.pk %}">{{ ad.title }}</a></p>
+        <p>{{ ad.date_posted }}</p>
+    {% endfor %}
+{% endblock %}

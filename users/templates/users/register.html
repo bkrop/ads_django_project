@@ -1,0 +1,12 @@
+{% extends 'ads/base.html' %}
+
+{% block title %}Register Page{% endblock %}
+
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p>{{ form.as_p }}</p> {# .as_p - powoduje rozmieszczenie w nowych akapitach #}
+        <button type="submit">Register</button>
+    </form>
+    
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'ads/base.html' %}
+
+{% block title %}Delete Ad Page{% endblock %}
+
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <h2>Are you sure you want to delete the ad '{{ ad.title }}'?</h2>
+        <button type="submit">Yes, delete</button>
+        <a href="{% url 'ad-detail' pk=ad.pk %}">No, i do not</a>
+    </form>
+{% endblock %}
