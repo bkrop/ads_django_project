@@ -2,8 +2,7 @@
 
 {% block title %}Create Ad Page{% endblock %}
 
-{% block content %}
-    
+{% block content %}    
     <form action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Ad
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -16,6 +16,15 @@ class AdListView(ListView):
     template_name = 'ads/home.html' # <app>/<object>_<typeOfView> - tutaj - ads/ad_list
     context_object_name = 'ads'
     ordering = ['-date_posted']
+    extra_context = {'categories': Ad.CATEGORIES_CHOICES}
+
+class AdFilteredListView(ListView):
+    model = Ad
+    template_name = 'ads/filtered.html'
+    context_object_name = 'ads'
+
+    def get_queryset(self):
+        return Ad.objects.filter(category=self.kwargs.get('category')).order_by('-date_posted')
 
 class AdDetailView(DetailView):
     model = Ad
