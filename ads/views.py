@@ -1,15 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Ad
+from .forms import SearchForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.db.models import Q
 
-
-def home(request):
-    context = {
-        'ads': Ad.objects.all(),
-        'title': 'Home Page',
-    }
-    return render(request, 'ads/home.html', context)
 
 class AdListView(ListView):
     model = Ad
@@ -17,6 +12,19 @@ class AdListView(ListView):
     context_object_name = 'ads'
     ordering = ['-date_posted']
     extra_context = {'categories': Ad.CATEGORIES_CHOICES}
+    form_class = SearchForm
+
+class AdSearchView(ListView):
+    model = Ad
+    template_name = 'ads/ad_search.html'
+    context_object_name = 'ads'
+    
+    def get_queryset(self):
+        query = self.request.GET.get('q') # bierze tekst z form gdzie name='q'
+        ads = Ad.objects.filter(
+            Q(title__icontains=query) | Q(content__icontains=query) # wrzuca tekst i wyszukuje wszystko co jest w tytule LUB content, stąd |
+        )
+        return ads
 
 class AdFilteredListView(ListView):
     model = Ad

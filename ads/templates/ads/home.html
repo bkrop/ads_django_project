@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block content %}
+    <form action="{% url 'ad-search' %}" method="GET">
+        <input name="q" type="text" placeholder="Search...">
+    </form>
     <ul>
         <h2>Categories</h2>
         {% for category in categories %}
