@@ -6,4 +6,5 @@
     <h1>{{ ad.title }}</h1>
     <p>{{ ad.content }}</p>
     <small>{{ ad.date_posted }} by {{ ad.author }}</small>
+    <h2><a href="{% url 'message-create' receiver=ad.author.id %}">Ask about it!</a></h2>
 {% endblock %}

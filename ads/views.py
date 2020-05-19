@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Ad
-from .forms import SearchForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
@@ -12,7 +11,6 @@ class AdListView(ListView):
     context_object_name = 'ads'
     ordering = ['-date_posted']
     extra_context = {'categories': Ad.CATEGORIES_CHOICES}
-    form_class = SearchForm
 
 class AdSearchView(ListView):
     model = Ad

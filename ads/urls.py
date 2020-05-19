@@ -4,7 +4,7 @@ from .views import AdListView, AdDetailView, AdCreateView, AdUpdateView, AdDelet
 
 urlpatterns = [
     path('', AdListView.as_view(), name='ads-home'),
-    path('<str:category>', AdFilteredListView.as_view(), name='ads-filtered'),
+    path('ads/<str:category>', AdFilteredListView.as_view(), name='ads-filtered'),
     path('about/', views.about, name='ads-about'),
     path('ad/<int:pk>', AdDetailView.as_view(), name='ad-detail'),
     path('ad/create', AdCreateView.as_view(), name='ad-create'),
