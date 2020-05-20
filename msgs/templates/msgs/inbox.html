@@ -6,6 +6,9 @@
     {% for message in messages %}
         <p>{{ message.sender }}</p>
         <p>{{ message.content }}</p>
+        {% if message.file_name %}
+            <p><a href="{{ message.file_name.url }}" download>{{ message.file_name }}</a></p>
+        {% endif %}
         <small>{{ message.date_of_create }}</small>
     {% endfor %}
 {% endblock %}

@@ -122,5 +122,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/media/'
+
 LOGIN_REDIRECT_URL = 'ads-home'
 LOGIN_URL = 'login'

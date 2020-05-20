@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class MessageCreateView(CreateView):
     model = Message
-    fields = ['content']
+    fields = ['content', 'file_name']
     template_name = 'msgs/create_message.html'
     success_url = '/'
 

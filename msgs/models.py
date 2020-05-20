@@ -7,3 +7,4 @@ class Message(models.Model):
     receiver = models.ForeignKey(User, related_name='receiver', on_delete=models.CASCADE)
     content = models.TextField()
     date_of_create = models.DateField(default=timezone.now)
+    file_name = models.FileField(blank=True, null=True, upload_to='media')
