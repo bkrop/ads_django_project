@@ -1,0 +1,11 @@
+{% extends 'ads/base.html' %}
+
+{% block title %}Inbox Page{% endblock %}
+
+{% block content %}
+    {% for message in messages %}
+        <p>{{ message.sender }}</p>
+        <p>{{ message.content }}</p>
+        <small>{{ message.date_of_create }}</small>
+    {% endfor %}
+{% endblock %}
