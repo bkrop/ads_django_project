@@ -37,7 +37,7 @@ class AdDetailView(DetailView):
 
 class AdCreateView(LoginRequiredMixin, CreateView):
     model = Ad
-    fields = ['title', 'content', 'category']
+    fields = ['title', 'content', 'category', 'image']
     template_name = 'ads/ad_create.html'
 
     def form_valid(self, form):
@@ -46,7 +46,7 @@ class AdCreateView(LoginRequiredMixin, CreateView):
 
 class AdUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Ad
-    fields = ['title', 'content', 'category']
+    fields = ['title', 'content', 'category', 'image']
     template_name = 'ads/ad_create.html'
 
     def form_valid(self, form):

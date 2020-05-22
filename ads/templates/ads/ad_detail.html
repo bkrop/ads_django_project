@@ -5,6 +5,9 @@
 {% block content %}
     <h1>{{ ad.title }}</h1>
     <p>{{ ad.content }}</p>
+    {% if ad.image %}
+        <img src="{{ ad.image.url }}" alt="">
+    {% endif %}
     <small>{{ ad.date_posted }} by {{ ad.author }}</small>
     <h2><a href="{% url 'message-create' receiver_id=ad.author.id %}">Ask about it!</a></h2>
 {% endblock %}

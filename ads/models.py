@@ -16,6 +16,7 @@ class Ad(models.Model):
     category = models.CharField(max_length=100, choices=CATEGORIES_CHOICES)
     date_posted = models.DateField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE) #usunięcie usera usunie jego posty
+    image = models.ImageField(upload_to='media', null=True, blank=True)
 
     def __str__(self):
         return f'{self.title}'
