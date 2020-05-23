@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import CreateView, ListView
 from .models import Message
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class MessageCreateView(CreateView):
     model = Message
@@ -15,7 +16,7 @@ class MessageCreateView(CreateView):
         form.instance.receiver = receiver
         return super().form_valid(form)
 
-class ReceivedMessagesListView(ListView):
+class ReceivedMessagesListView(LoginRequiredMixin, ListView):
     model = Message
     template_name = 'msgs/inbox.html'
     context_object_name = 'messages'

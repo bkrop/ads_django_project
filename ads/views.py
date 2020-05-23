@@ -10,7 +10,7 @@ class AdListView(ListView):
     template_name = 'ads/home.html' # <app>/<object>_<typeOfView> - tutaj - ads/ad_list
     context_object_name = 'ads'
     ordering = ['-date_posted']
-    extra_context = {'categories': Ad.CATEGORIES_CHOICES}
+    extra_context = {'categories': sorted(Ad.CATEGORIES_CHOICES)}
 
 class AdSearchView(ListView):
     model = Ad
@@ -34,6 +34,11 @@ class AdFilteredListView(ListView):
 
 class AdDetailView(DetailView):
     model = Ad
+    def get_object(self):
+        obj = super().get_object()
+        obj.times_viewed += 1
+        obj.save()
+        return obj
 
 class AdCreateView(LoginRequiredMixin, CreateView):
     model = Ad

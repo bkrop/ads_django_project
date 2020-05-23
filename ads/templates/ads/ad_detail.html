@@ -8,6 +8,10 @@
     {% if ad.image %}
         <img src="{{ ad.image.url }}" alt="">
     {% endif %}
-    <small>{{ ad.date_posted }} by {{ ad.author }}</small>
+    <small>{{ ad.date_posted }} by <a href="{% url 'profile' username=ad.author.username %}">{{ ad.author }}</a> viewed: {{ ad.times_viewed }} times</small>
     <h2><a href="{% url 'message-create' receiver_id=ad.author.id %}">Ask about it!</a></h2>
+    {% if request.user == ad.author %}
+        <h3><a href="{% url 'ad-update' pk=ad.id %}">Update Ad</a></h3>
+        <h3><a href="{% url 'ad-delete' pk=ad.id %}">Delete Ad</a></h3>
+    {% endif %}
 {% endblock %}

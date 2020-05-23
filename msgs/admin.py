@@ -1,3 +1,4 @@
 from django.contrib import admin
+from msgs.models import Message
 
-# Register your models here.
+admin.site.register(Message)
